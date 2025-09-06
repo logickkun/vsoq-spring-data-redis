@@ -1,0 +1,27 @@
+plugins {
+    id 'java-library'                                // 라이브러리 모듈
+    id 'io.spring.dependency-management' version '1.1.6'
+    // Boot 플러그인은 라이브러리에 적용하지 않음 (apply false 또는 아예 제거)
+    // id 'org.springframework.boot' version '3.3.2' apply false
+}
+
+group = 'com.logickkun.vsoq'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = '17'
+}
+
+repositories { mavenCentral() }
+
+dependencies {
+    // 소비 모듈에서 StringRedisTemplate 같은 타입을 직접 쓸 수 있게 하려면 api 로 노출
+    api 'org.springframework.boot:spring-boot-starter-data-redis:3.5.4'
+
+//    compileOnly 'org.projectlombok:lombok'
+//    annotationProcessor 'org.projectlombok:lombok'
+
+//    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.withType(Test).configureEach { useJUnitPlatform() }
